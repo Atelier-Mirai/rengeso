@@ -13,7 +13,7 @@
 ターミナルより、以下のコマンドを実行してください。
 
 ```
-$ rails new APPLICATION_NAME -m https://raw.github.com/Atelier-Mirai/rengeso/rengeso.rb
+$ rails new APPLICATION_NAME -m https://raw.github.com/Atelier-Mirai/rengeso/main/rengeso.rb
 ```
 
 ## 参考

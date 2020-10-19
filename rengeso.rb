@@ -1,5 +1,3 @@
-
-
 def get_remote(src, dest = nil)
   dest ||= src
   repo = "https://raw.github.com/Atelier-Mirai/rengeso/main/files/"
@@ -20,12 +18,6 @@ get_remote "Gemfile"
 # Database
 get_remote "config/database.yml.example", "config/database.yml"
 gsub_file "config/database.yml", /myapp/, @app_name
-
-# install gems
-run "bundle install"
-
-# create db
-run "bundle exec rails db:create"
 
 # set config/application.rb
 application  do
@@ -123,25 +115,22 @@ get_remote "test/test_helper.rb"
 # For pry
 get_remote ".pryrc"
 
+# install gems
+run "bundle install"
+
+# create db
+run "bundle exec rails db:create"
+
+# Fomantic UI & jQuery
+run "yarn add jquery"
+# run "yarn add fomantic-ui"
+
 after_bundle do
   # config/webpack/
-  # get_remote "config/webpack/environment.js"
-  insert_into_file 'config/webpack/environment.js',%(
-
-    // jQuery
-    environment.plugins.prepend('Provide',
-      new webpack.ProvidePlugin({
-        $: 'jquery/src/jquery',
-        jQuery: 'jquery/src/jquery'
-      })
-    )
-  ), after: "const webpack = require('webpack')"
+  get_remote "config/webpack/environment.js"
 
   # git
   git :init
   git add: '.'
   git commit: "-am 'rails new #{@app_name} -m https://raw.github.com/Atelier-Mirai/rengeso/main/rengeso.rb'"
-
-  # fomantic ui & jQuery
-  run "yarn add fomantic-ui jquery"
 end
