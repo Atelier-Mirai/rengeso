@@ -32,8 +32,6 @@ group :development, :test do
   gem 'pry-byebug'                   # デバッグを実施
   gem 'hirb'                         # console上のモデル出力を整形
   gem 'hirb-unicode'                 # console上のモデル出力を整形
-
-  gem 'warning'                      # warning抑制
 end
 
 group :development do
