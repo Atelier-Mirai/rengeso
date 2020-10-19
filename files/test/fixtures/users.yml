@@ -1,0 +1,17 @@
+taro:
+  name: taro
+  email: taro@example.com
+  password: himitsu
+  password_confirmation: himitsu
+
+jiro:
+  name: jiro
+  email: jiro@example.com
+  password: himitsu
+  password_confirmation: himitsu
+
+saburo:
+  name: saburo
+  email: saburo@example.com
+  password: himitsu
+  password_confirmation: himitsu

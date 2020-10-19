@@ -1,0 +1,27 @@
+h1 新規 利用者 登録
+
+= form_with model: @user, class: 'ui form', local: true do |f|
+  - if @user.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+      ul
+        - @user.errors.full_messages.each do |message|
+          li = message
+  .field
+    = f.label :name
+    = f.text_field :name, required: true
+  .field
+    = f.label :email
+    = f.email_field :email, required: true
+  .field
+    = f.label :password
+    = f.password_field :password, required: true
+  .field
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation, required: true
+  .field
+    .ui.check_box
+      => f.check_box :remember_me
+      = f.label :remember_me
+  .field
+    = f.submit '利用者登録', class: 'ui prymary button'

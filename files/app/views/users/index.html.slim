@@ -1,0 +1,22 @@
+- provide(:title, '利用者一覧')
+
+h1.ui.header Listing users
+
+- if current_user
+  p = current_user.name
+
+table.ui.table
+  thead
+    tr
+      th
+      th
+      th
+  tbody
+    - @users.each do |user|
+      tr
+        td = link_to user.name, user
+        td = link_to 'Edit', edit_user_path(user)
+        td = link_to 'Destroy', user, data: { confirm: 'Are you sure?' }, method: :delete
+br
+
+= link_to 'New User', new_user_path
