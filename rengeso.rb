@@ -19,6 +19,12 @@ get_remote "Gemfile"
 get_remote "config/database.yml.example", "config/database.yml"
 gsub_file "config/database.yml", /myapp/, @app_name
 
+# install gems
+run "bundle install"
+
+# create db
+run "bundle exec rails db:create"
+
 # set config/application.rb
 application  do
   %q{
@@ -35,28 +41,29 @@ get_remote "app/assets/images/favicon.ico"
 get_remote "app/assets/images/logo.jpg"
 
 # app/assets/stylesheets/
+remove_file "app/assets/stylesheets/application.css"
+get_remote "app/assets/stylesheets/application.scss"
 get_remote "app/assets/stylesheets/_header.scss"
 get_remote "app/assets/stylesheets/_iro.scss"
-get_remote "app/assets/stylesheets/application.scss"
 
 # app/controllers/
 get_remote "app/controllers/application_controller.rb"
 get_remote "app/controllers/users_controller.rb"
-
-# app/helpers/
+#
+# # app/helpers/
 get_remote "app/helpers/application_helper.rb"
 get_remote "app/helpers/semantic_breadcrumbs_helper.rb"
 get_remote "app/helpers/semantic_flash_helper.rb"
 get_remote "app/helpers/semantic_icon_helper.rb"
-
-# app/javascript/packs/
+#
+# # app/javascript/packs/
 get_remote "app/javascript/packs/application.js"
-
-# app/mailers
+#
+# # app/mailers
 get_remote "app/mailers/application_mailer.rb"
 get_remote "app/mailers/user_mailer.rb"
 
-# app/views/layouts/
+# # app/views/layouts/
 remove_file "app/views/layouts/application.html.erb"
 remove_file "app/views/layouts/mailer.html.erb"
 remove_file "app/views/layouts/mailer.text.erb"
@@ -115,19 +122,13 @@ get_remote "test/test_helper.rb"
 # For pry
 get_remote ".pryrc"
 
-# install gems
-run "bundle install"
-
-# create db
-run "bundle exec rails db:create"
-
-# Fomantic UI & jQuery
-run "yarn add jquery"
-# run "yarn add fomantic-ui"
-
 after_bundle do
   # config/webpack/
   get_remote "config/webpack/environment.js"
+
+  # Fomantic UI & jQuery
+  run "yarn add jquery"
+  # run "yarn add fomantic-ui"
 
   # git
   git :init
