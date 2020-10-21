@@ -31,6 +31,8 @@ application  do
     config.i18n.default_locale            = :ja          # ロケールを日本に設定
     config.time_zone                      = "Asia/Tokyo" # 日本中央標準時で、時刻を表示
     config.active_record.default_timezone = :local       # DBにローカル時刻で保存する
+
+    config.active_storage.variant_processor = :vips      # 画像変換にlibvipsを使う
   }
 end
 
