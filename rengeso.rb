@@ -41,6 +41,7 @@ remove_file "app/assets/images/.keep"
 get_remote "app/assets/images/apple-touch-icon-180x180.png"
 get_remote "app/assets/images/favicon.ico"
 get_remote "app/assets/images/logo.jpg"
+get_remote "app/assets/images/renge.jpg"
 
 # app/assets/stylesheets/
 remove_file "app/assets/stylesheets/application.css"
