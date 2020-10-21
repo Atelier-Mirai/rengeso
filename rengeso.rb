@@ -51,7 +51,8 @@ get_remote "app/assets/stylesheets/_iro.scss"
 # app/controllers/
 get_remote "app/controllers/application_controller.rb"
 get_remote "app/controllers/users_controller.rb"
-#
+generate :controller, "welcome", "index"
+
 # # app/helpers/
 get_remote "app/helpers/application_helper.rb"
 get_remote "app/helpers/semantic_breadcrumbs_helper.rb"
@@ -75,6 +76,8 @@ get_remote "app/views/layouts/_header.slim"
 get_remote "app/views/layouts/_footer.slim"
 get_remote "app/views/layouts/mailer.html.slim"
 get_remote "app/views/layouts/mailer.text.slim"
+
+get_remote "app/views/welcome/index.html.slim"
 
 get_remote "app/views/users/index.html.slim"
 get_remote "app/views/users/show.html.slim"
