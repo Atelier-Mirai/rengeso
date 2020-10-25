@@ -19,6 +19,8 @@ html
 
     / sprocket管理下のcssを読み込む
     = stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload'
+    / sprocket管理下のjsを読み込む
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
     / webpack管理下のjsを読み込む
     = javascript_pack_tag 'application', 'data-turbolinks-track': 'reload'
 
