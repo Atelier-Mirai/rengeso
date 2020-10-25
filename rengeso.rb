@@ -47,7 +47,7 @@ get_remote "app/assets/images/logo.jpg"
 get_remote "app/assets/images/renge.jpg"
 
 # app/assets/javascripts/
-get_file "app/assets/javascripts/application.js"
+get_remote "app/assets/javascripts/application.js"
 
 # app/assets/stylesheets/
 remove_file "app/assets/stylesheets/application.css"
