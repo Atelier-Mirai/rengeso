@@ -10,11 +10,14 @@ ja:
       user: 利用者
     attributes:
       user:
+        id: ID
         name: 名前
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
         remember_me: この端末にログイン情報を記録する
+        created_at: 登録日時
+        updated_at: 更新日時
   activemodel:
     models:
       session: セッション

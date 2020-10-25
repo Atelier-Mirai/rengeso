@@ -15,6 +15,7 @@ gem 'image_processing'
 gem 'bootsnap', require: false
 
 gem 'slim-rails'                     # テンプレートエンジン
+gem 'fomantic-ui-sass'               # CSSフレームワーク
 # gem 'sorcery'                        # 利用者認証
 gem 'zxcvbn-ruby', require: 'zxcvbn' # パスワード強度確認
 gem 'pagy'                           # ページネーション

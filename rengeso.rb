@@ -46,28 +46,28 @@ get_remote "app/assets/images/renge.jpg"
 # app/assets/stylesheets/
 remove_file "app/assets/stylesheets/application.css"
 get_remote "app/assets/stylesheets/application.scss"
-get_remote "app/assets/stylesheets/_header.scss"
+get_remote "app/assets/stylesheets/utilities/utility.scss"
+get_remote "app/assets/stylesheets/utilities/_display.scss"
+get_remote "app/assets/stylesheets/utilities/_spacing.scss"
 get_remote "app/assets/stylesheets/_iro.scss"
+get_remote "app/assets/stylesheets/_header.scss"
+get_remote "app/assets/stylesheets/_footer.scss"
 
 # app/controllers/
 get_remote "app/controllers/application_controller.rb"
 get_remote "app/controllers/users_controller.rb"
-generate :controller, "welcome", "index"
 
 # # app/helpers/
 get_remote "app/helpers/application_helper.rb"
-get_remote "app/helpers/semantic_breadcrumbs_helper.rb"
-get_remote "app/helpers/semantic_flash_helper.rb"
-get_remote "app/helpers/semantic_icon_helper.rb"
-#
-# # app/javascript/packs/
+
+# app/javascript/packs/
 get_remote "app/javascript/packs/application.js"
-#
-# # app/mailers
+
+# app/mailers
 get_remote "app/mailers/application_mailer.rb"
 get_remote "app/mailers/user_mailer.rb"
 
-# # app/views/layouts/
+# app/views/layouts/
 remove_file "app/views/layouts/application.html.erb"
 remove_file "app/views/layouts/mailer.html.erb"
 remove_file "app/views/layouts/mailer.text.erb"
@@ -77,8 +77,6 @@ get_remote "app/views/layouts/_header.slim"
 get_remote "app/views/layouts/_footer.slim"
 get_remote "app/views/layouts/mailer.html.slim"
 get_remote "app/views/layouts/mailer.text.slim"
-
-get_remote "app/views/welcome/index.html.slim"
 
 get_remote "app/views/users/index.html.slim"
 get_remote "app/views/users/show.html.slim"
@@ -100,10 +98,13 @@ insert_into_file 'config/environments/development.rb',%(
 # config/initializers/
 file 'config/initializers/generators.rb', <<~EOF
   Rails.application.config.generators do |g|
-    g.helper false
-    g.assets false
+    g.stylesheets false
+    g.helper      false
+    g.assets      false
   end
 EOF
+generate :controller, "welcome", "index"
+get_remote "app/views/welcome/index.html.slim"
 
 # For pagy
 get "https://raw.github.com/ddnexus/pagy/master/lib/config/pagy.rb", "config/initializers/pagy.rb"
@@ -134,7 +135,6 @@ after_bundle do
 
   # Fomantic UI & jQuery
   run "yarn add jquery"
-  # run "yarn add fomantic-ui"
 
   # git
   git :init

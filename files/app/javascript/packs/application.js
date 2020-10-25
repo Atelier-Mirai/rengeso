@@ -9,9 +9,6 @@ require("@rails/activestorage").start()
 require("channels")
 require("jquery")
 
-import "fomantic-ui/dist/semantic.min.css"
-import "fomantic-ui/dist/semantic.min.js"
-
 //初回読み込み、リロード、ページ切り替えでドロップダウンメニューを使えるようにする
 $(document).on('turbolinks:load', function() {
   // show dropdown on hover
@@ -32,7 +29,6 @@ $(document).on('turbolinks:load', function() {
 
   // タブ
   $('.ui.tabular.menu .item').tab();
-
 })
 
 // Uncomment to copy all static images under ../images to the output folder and reference

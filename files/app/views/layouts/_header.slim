@@ -1,8 +1,11 @@
-/! 上部ナビゲーションメニュー
-.ui.top.fixed.menu.sitepage_header.computer.only
+header.ui.top.fixed.menu
   .ui.container
     .logo_mark
-      = link_to image_tag('logo.jpg', alt: 'logo', height: '64px'), root_path, id: "logo"
+      = link_to root_path do
+        = image_tag('renge.jpg', alt: 'logo', height: '64px')
+        h1
+          | 蓮華草
+          = semantic_icon('leaf')
 
     .right.menu
       .ui.dropdown.item
@@ -14,41 +17,13 @@
           = link_to '会社概要', root_path, class: 'ui item'
           .divider
           = link_to '採用情報', root_path, class: 'ui item'
-      .ui.dropdown.item
-        | 交通案内
-        i.dropdown.icon
-        .menu
-          = link_to '本社', root_path, class: 'ui item'
-          .divider
-          = link_to '支店1', root_path, class: 'ui item'
-          = link_to '支店2', root_path, class: 'ui item'
-          = link_to '支店3', root_path, class: 'ui item'
+
       = link_to 'お問い合わせ', root_path, class: 'ui item'
       .item
         .ui.icon.input
           input placeholder="検索" type="text"
           i.search.link.icon
-
-      / - if admin_user?
-      /   .ui.dropdown.item
-      /     = current_user.name
-      /     i.dropdown.icon
-      /     .menu
-      /       = link_to '新会員登録', new_user_path,    class: 'ui item'
-      /       .divider
-      /       = link_to 'ログアウト', logout_path, method: :delete, class: 'ui item'
-      / - elsif logged_in_user?
-      /   .ui.dropdown.item
-      /     = current_user.name
-      /     i.dropdown.icon
-      /     .menu
-      /       = link_to '自己紹介', user_path(current_user), class: 'ui item'
-      /       = link_to '情報更新', user_path(current_user), class: 'ui item'
-      /       .divider
-      - if false
-        = link_to 'ログアウト', logout_path, method: :delete, class: 'ui item'
-      - else
-        .item
-          = link_to 'ログイン', login_path, class: 'ui primary button'
-        .item
-          = link_to '利用者登録', signup_path, class: 'ui positive button'
+      .item
+        = link_to 'ログイン', login_path, class: 'ui primary button'
+      .item
+        = link_to '利用者登録', signup_path, class: 'ui positive button'
