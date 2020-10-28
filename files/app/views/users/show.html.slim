@@ -1,6 +1,25 @@
-p#notice = notice
+h1  利用者詳細
 
+= link_to '一覧', admin_users_path, class: 'ui right floated primary tertiary button'
 
-=> link_to 'Edit', edit_user_path(@user)
-'|
-=< link_to 'Back', users_path
+table.ui.blue.striped.table
+  tbody
+    tr
+      th = User.human_attribute_name :name
+      td = @user.name
+    tr
+      th = User.human_attribute_name :email
+      td = @user.email
+    tr
+      th = User.human_attribute_name :admin
+      td = @user.admin? ? '有り' : '無し'
+    tr
+      th = User.human_attribute_name :created_at
+      td = @user.created_at
+    tr
+      th = User.human_attribute_name :updated_at
+      td = @user.updated_at
+
+/ = link_to '編輯', edit_admin_user_path(user), class: 'btn btn-primary mr-3'
+= link_to '編輯', [:edit, :admin, @user], class: 'ui yellow button'
+= link_to '削除', admin_user_path(@user), method: :delete, data: { confirm: '本当に削除してよろしいですか' }, class: 'ui red button'

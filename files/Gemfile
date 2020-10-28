@@ -3,26 +3,32 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.2'
 
-gem 'rails'
-gem 'pg'
-gem 'puma'
-gem 'sass-rails'
-gem 'webpacker'
-gem 'turbolinks'
-gem 'jbuilder'
-gem 'bcrypt'
-gem 'image_processing'
-gem 'bootsnap', require: false
+# Rails 本体
+#------------------------------------------------------------------------------
+gem 'rails'                          # Ruby on Rails
+gem 'pg'                             # データベースに Postgresql を使う
+gem 'puma'                           # Rails動作用のWeb/アプリケーションサーバ
+gem 'sass-rails'                     # Sassを使ってスタイルシートを書く
+gem 'webpacker'                      # フロントエンド開発で使われているwebpack用のgem
+gem 'turbolinks'                     # 画面遷移を高速化するためのgem
+gem 'jbuilder'                       # JSON形式のデータ作成に便利なgem
+gem 'bcrypt'                         # 安全なパスワードなど、暗号化の為のgem
+gem 'image_processing'               # 画像処理のためのgem
+gem 'bootsnap', require: false       # Railsの高速化のためのgem
 
+# 便利なgem
+#------------------------------------------------------------------------------
 gem 'slim-rails'                     # テンプレートエンジン
 gem 'fomantic-ui-sass'               # CSSフレームワーク
 # gem 'sorcery'                        # 利用者認証
-gem 'zxcvbn-ruby', require: 'zxcvbn' # パスワード強度確認
+# gem 'zxcvbn-ruby', require: 'zxcvbn' # パスワード強度確認
 gem 'pagy'                           # ページネーション
 gem "aws-sdk-s3", require: false     # AWS使用の為
 gem 'yard'                           # ドキュメント作成
 gem 'wareki'                         # 和暦表示
 
+# 開発用、テスト用のgem
+#------------------------------------------------------------------------------
 group :development, :test do
   gem 'better_errors'                # エラー画面を見やすく
   gem 'binding_of_caller'            # ページフッターにデバッグ情報表示
@@ -35,21 +41,25 @@ group :development, :test do
   gem 'hirb-unicode'                 # console上のモデル出力を整形
 end
 
+# 開発用のgem
+#------------------------------------------------------------------------------
 group :development do
-  gem 'web-console'
-  gem 'listen'
-  gem 'spring'
+  gem 'web-console'                  # console と書き、ブラウザ上でデバックする
+  gem 'listen'                       # ファイルの変更をリッスンし、変更内容を通知
+  gem 'spring'                       # railsコマンドの実行を速くする
   gem 'spring-watcher-listen'
 
   gem 'letter_opener'                # メール開封
   gem 'rack-mini-profiler'           # 簡易性能測定
 end
 
+# テスト用のgem
+#------------------------------------------------------------------------------
 group :test do
-  gem 'capybara'
+  gem 'capybara'                     # 仮想的に利用者のブラウザ操作を行う
   gem 'selenium-webdriver'
   gem 'webdrivers'
 
-  gem 'minitest'                     # minitest
+  gem 'minitest'                     # Rails標準のテスト用フレームワーク
   gem 'minitest-reporters'           # テスト結果を見やすく表示
 end

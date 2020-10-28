@@ -73,7 +73,10 @@ get_remote "app/javascript/packs/application.js"
 get_remote "app/mailers/application_mailer.rb"
 get_remote "app/mailers/user_mailer.rb"
 
-# app/views/layouts/
+# app/views/
+get_remote "app/views/application/error404.html.slim"
+get_remote "app/views/application/error500.html.slim"
+
 remove_file "app/views/layouts/application.html.erb"
 remove_file "app/views/layouts/mailer.html.erb"
 remove_file "app/views/layouts/mailer.text.erb"
@@ -84,11 +87,11 @@ get_remote "app/views/layouts/_footer.slim"
 get_remote "app/views/layouts/mailer.html.slim"
 get_remote "app/views/layouts/mailer.text.slim"
 
-get_remote "app/views/users/index.html.slim"
-get_remote "app/views/users/show.html.slim"
-get_remote "app/views/users/new.html.slim"
-get_remote "app/views/users/edit.html.slim"
 get_remote "app/views/users/_form.html.slim"
+get_remote "app/views/users/edit.html.slim"
+get_remote "app/views/users/index.html.slim"
+get_remote "app/views/users/new.html.slim"
+get_remote "app/views/users/show.html.slim"
 
 # config/environments/
 # For letter opener
@@ -104,7 +107,6 @@ insert_into_file 'config/environments/development.rb',%(
 # config/initializers/
 file 'config/initializers/generators.rb', <<~EOF
   Rails.application.config.generators do |g|
-    g.stylesheets false
     g.helper      false
     g.assets      false
   end
@@ -122,10 +124,8 @@ get_remote "config/locales/ja.yml"
 get_remote "config/routes.rb"
 
 # test/
-get_remote "test/controllers/users_controller_test.rb"
 get_remote "test/fixtures/users.yml"
-get_remote "test/integration/user_login_test.rb"
-get_remote "test/mailers/user_mailer_test.rb"
+get_remote "test/fixtures/tasks.yml"
 get_remote "test/system/tasks_test.rb"
 get_remote "test/system/users_test.rb"
 get_remote "test/application_system_test_case.rb"

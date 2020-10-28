@@ -1,17 +1,31 @@
 taro:
   name: taro
   email: taro@example.com
-  password: himitsu
-  password_confirmation: himitsu
+  password_digest: <%=BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST)%>
+  admin: true
 
 jiro:
   name: jiro
   email: jiro@example.com
-  password: himitsu
-  password_confirmation: himitsu
+  password_digest: <%=BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST)%>
+  admin: false
 
 saburo:
   name: saburo
   email: saburo@example.com
-  password: himitsu
-  password_confirmation: himitsu
+  password_digest: <%=BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST)%>
+  admin: false
+
+admin:
+  name: admin
+  email: admin@example.com
+  password_digest: <%=BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST)%>
+  admin: true
+
+<% 1.upto(10) do |i| %>
+user_<%= i %>:
+  name: user_<%= i %>
+  email: user_<%= i %>@example.com
+  password_digest: <%=BCrypt::Password.create('password', cost: BCrypt::Engine::MIN_COST)%>
+  admin: false
+<% end %>

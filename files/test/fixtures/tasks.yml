@@ -1,0 +1,47 @@
+# 太郎のタスク
+taro_task1:
+  name: 太郎のタスク その１
+  description: タスクの説明いろいろ１
+  user: taro
+
+taro_task2:
+  name: 太郎のタスク その２
+  description: タスクの説明いろいろ２
+  user: taro
+
+taro_task3:
+  name: 太郎のタスク その３
+  description: タスクの説明いろいろ３
+  user: taro
+
+# 次郎のタスク
+jiro_task1:
+  name: 次郎のタスク その１
+  description: タスクの説明いろいろ１
+  user: jiro
+
+jiro_task2:
+  name: 次郎のタスク その２
+  description: タスクの説明いろいろ２
+  user: jiro
+
+jiro_task3:
+  name: 次郎のタスク その３
+  description: タスクの説明いろいろ３
+  user: jiro
+
+# 三郎のタスク
+saburo_task1:
+  name: 三郎のタスク その１
+  description: タスクの説明いろいろ１
+  user: saburo
+
+saburo_task2:
+  name: 三郎のタスク その２
+  description: タスクの説明いろいろ２
+  user: saburo
+
+saburo_task3:
+  name: 三郎のタスク その３
+  description: タスクの説明いろいろ３
+  user: saburo
