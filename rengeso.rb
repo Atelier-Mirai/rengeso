@@ -126,6 +126,7 @@ get_remote "config/routes.rb"
 # test/
 get_remote "test/fixtures/users.yml"
 get_remote "test/fixtures/tasks.yml"
+get_remote "test/mailers/task_mailer_test.rb"
 get_remote "test/system/tasks_test.rb"
 get_remote "test/system/users_test.rb"
 get_remote "test/application_system_test_case.rb"

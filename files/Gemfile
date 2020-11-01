@@ -13,7 +13,8 @@ gem 'webpacker'                      # フロントエンド開発で使われ�
 gem 'turbolinks'                     # 画面遷移を高速化するためのgem
 gem 'jbuilder'                       # JSON形式のデータ作成に便利なgem
 gem 'bcrypt'                         # 安全なパスワードなど、暗号化の為のgem
-gem 'image_processing'               # 画像処理のためのgem
+gem 'image_processing'               # 画像処理用
+gem 'active_storage_validations'     # 画像ファイルのバリデーション用
 gem 'bootsnap', require: false       # Railsの高速化のためのgem
 
 # 便利なgem
@@ -26,13 +27,14 @@ gem 'pagy'                           # ページネーション
 gem "aws-sdk-s3", require: false     # AWS使用の為
 gem 'yard'                           # ドキュメント作成
 gem 'wareki'                         # 和暦表示
+# gem 'rails_autolink'                 # URLを自動的にリンクとして表示する
+# gem 'ransack'                        # 検索機能、並び替え機能の実装
 
 # 開発用、テスト用のgem
 #------------------------------------------------------------------------------
 group :development, :test do
   gem 'better_errors'                # エラー画面を見やすく
   gem 'binding_of_caller'            # ページフッターにデバッグ情報表示
-  gem 'letter_opener_web'            # メールを参照出来る
 
   gem 'pry'                          # pry
   gem 'pry-rails'                    # rails consoleでirbの代わりにpryを使う
@@ -49,7 +51,7 @@ group :development do
   gem 'spring'                       # railsコマンドの実行を速くする
   gem 'spring-watcher-listen'
 
-  gem 'letter_opener'                # メール開封
+  gem 'letter_opener_web'            # メール開封
   gem 'rack-mini-profiler'           # 簡易性能測定
 end
 
