@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update, :destroy]
+  # before_action :require_admin
 
   def index
-    @users = User.all
+    @user = User.all
   end
 
   def show
@@ -12,25 +13,22 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def edit
-  end
-
   def create
     @user = User.new(user_params)
 
     if @user.save
-      # 保存後にUserMailerを使ってwelcomeメールを送信
-      # UserMailer.with(user: @user).welcome_email.deliver_later
-      UserMailer.with(user: @user).activation_needed_email.deliver_later
-      redirect_to @user, notice: '確認メールをお送りいたしました。'
+      redirect_to admin_users_path, notice: "利用者「#{@user.name}」を作成しました"
     else
       render :new
     end
   end
 
+  def edit
+  end
+
   def update
     if @user.update(user_params)
-      redirect_to @user, notice: 'User was successfully updated.'
+      redirect_to admin_user_path(@user), notice: "利用者「#{@user.name}」を更新しました"
     else
       render :edit
     end
@@ -38,16 +36,7 @@ class UsersController < ApplicationController
 
   def destroy
     @user.destroy
-    redirect_to users_url, notice: 'User was successfully destroyed.'
-  end
-
-  def activate
-    if @user = User.load_from_activation_token(params[:id])
-      @user.activate!
-      redirect_to login_path, notice: 'User was successfully activated.'
-    else
-      not_authenticated
-    end
+    redirect_to admin_users_path, notice:  "利用者「#{@user.name}」を削除しました"
   end
 
   private
@@ -57,6 +46,10 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation, :role, :avatar)
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :admin)
   end
+
+  # def require_admin
+  #   redirect_to root_path, notice: '管理者権限が必要です' unless current_user.admin?
+  # end
 end
