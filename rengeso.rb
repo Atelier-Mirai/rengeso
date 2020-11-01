@@ -71,7 +71,6 @@ get_remote "app/javascript/packs/application.js"
 
 # app/mailers
 get_remote "app/mailers/application_mailer.rb"
-get_remote "app/mailers/user_mailer.rb"
 
 # app/views/
 get_remote "app/views/application/error404.html.slim"
