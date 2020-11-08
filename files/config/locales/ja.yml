@@ -15,9 +15,10 @@ ja:
         email: メールアドレス
         password: パスワード
         password_confirmation: パスワード(確認)
-        remember_me: この端末にログイン情報を記録する
         created_at: 登録日時
         updated_at: 更新日時
+        admin: 管理者権限
+        remember_me: この端末にログイン情報を記録する
   activemodel:
     models:
       session: セッション
@@ -222,8 +223,10 @@ ja:
   time:
     am: 午前
     formats:
-      # default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
-      default: "%Jf"
+      default: "%Y年%m月%d日(%a) %H時%M分%S秒 %z"
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  date:
+    formats:
+      default: "%Jf"

@@ -1,0 +1,30 @@
+= link_to root_path, class: 'active item' do
+  | Taskleaf
+  = semantic_icon 'leaf'
+
+= link_to root_path, class: 'item' do
+  | 会社案内
+  = semantic_icon 'building outline'
+
+= link_to root_path, class: 'item' do
+  = semantic_icon 'paper plane'
+  | お問い合わせ
+
+/ - if current_user
+/   = link_to tasks_path, class: 'item'
+/     | タスク一覧
+/     = semantic_icon 'tasks'
+/   - if current_user.admin?
+/       = link_to admin_users_path, class: 'item'
+/         | 利用者一覧
+/         = semantic_icon 'user icon'
+/   = link_to logout_path, method: :delete, class: 'item'
+/     | ログアウト
+/     = semantic_icon 'sign out alternate'
+/ - else
+/   = link_to login_path, class: 'item'
+/     | ログイン
+/     = semantic_icon 'sign in alternate'
+/   = link_to signup_path, class: 'item'
+/     | 利用者登録
+/     = semantic_icon 'user plus'

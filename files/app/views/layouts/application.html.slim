@@ -3,7 +3,8 @@ html
   head
     meta charset="utf-8"
     meta name="viewport" content="width=device-width"
-    meta name="description" content="サイト紹介文100文字 あのイーハトーヴォのすきとおった風、夏でも底に冷たさをもつ青いそら、うつくしい森で飾られたモリーオ市、郊外のぎらぎらひかる草の波 またそのなかでいっしょになったたくさんのひとたち"
+    meta name="description" content="現場で使える Ruby on Rails 速習実践ガイド による
+    タスク管理アプリ Taskleaf の為の雛型です"
     title = full_title(yield(:page_title))
     / ファビコンの指定 https://ao-system.net/favicongenerator/
     = favicon_link_tag 'favicon.ico'
@@ -28,19 +29,25 @@ html
     script src="https://cdn.jsdelivr.net/npm/ie-buster@1.1.0/dist/ie-buster.min.js"
 
   body
-    / header menu
-    == render 'layouts/header'
+    / iPhone用 サイドバーメニュー
+    .ui.sidebar.green.vertical.menu
+      == render 'layouts/sidebar'
 
-    main.ui.container
-      / flashメッセージの表示
-      = semantic_flash
+    / コンテンツ本体
+    .pusher
+      / ヘッダー
+      == render 'layouts/header'
 
-      = yield
+      / メイン
+      main.ui.container
+        / flashメッセージを表示
+        = semantic_flash
+        = yield
 
-    / footer menu
-    == render 'layouts/footer'
+      / フッター
+      == render 'layouts/footer'
 
-    / debug情報の表示
-    - if Rails.env.development?
-      .ui.container
-        = debug(params)
+      / 開発中のデバッグ情報を表示
+      - if Rails.env.development?
+        .ui.container
+          = debug(params)

@@ -32,7 +32,7 @@ application  do
     config.time_zone                      = "Asia/Tokyo" # 日本中央標準時で、時刻を表示
     config.active_record.default_timezone = :local       # DBにローカル時刻で保存する
 
-    config.active_storage.variant_processor = :vips      # 画像変換にlibvipsを使う
+    # config.active_storage.variant_processor = :vips      # 画像変換にlibvipsを使う
   }
 end
 
@@ -48,6 +48,7 @@ get_remote "app/assets/images/renge.jpg"
 
 # app/assets/javascripts/
 get_remote "app/assets/javascripts/application.js"
+get_remote "app/assets/javascripts/semantic-ui-customize.js"
 
 # app/assets/stylesheets/
 remove_file "app/assets/stylesheets/application.css"
@@ -61,7 +62,9 @@ get_remote "app/assets/stylesheets/_footer.scss"
 
 # app/controllers/
 get_remote "app/controllers/application_controller.rb"
+get_remote "app/controllers/errors_controller.rb"
 get_remote "app/controllers/users_controller.rb"
+get_remote "app/controllers/welcome_controller.rb"
 
 # # app/helpers/
 get_remote "app/helpers/application_helper.rb"
@@ -73,16 +76,17 @@ get_remote "app/javascript/packs/application.js"
 get_remote "app/mailers/application_mailer.rb"
 
 # app/views/
-get_remote "app/views/application/error404.html.slim"
-get_remote "app/views/application/error500.html.slim"
+get_remote "app/views/application/internal_server_error.html.slim"
+get_remote "app/views/application/not_found.html.slim"
 
 remove_file "app/views/layouts/application.html.erb"
 remove_file "app/views/layouts/mailer.html.erb"
 remove_file "app/views/layouts/mailer.text.erb"
 
-get_remote "app/views/layouts/application.html.slim"
 get_remote "app/views/layouts/_header.slim"
 get_remote "app/views/layouts/_footer.slim"
+get_remote "app/views/layouts/_sidebar.slim"
+get_remote "app/views/layouts/application.html.slim"
 get_remote "app/views/layouts/mailer.html.slim"
 get_remote "app/views/layouts/mailer.text.slim"
 
@@ -91,6 +95,8 @@ get_remote "app/views/users/edit.html.slim"
 get_remote "app/views/users/index.html.slim"
 get_remote "app/views/users/new.html.slim"
 get_remote "app/views/users/show.html.slim"
+
+get_remote "app/views/welcome/index.html.slim"
 
 # config/environments/
 # For letter opener
@@ -104,16 +110,13 @@ insert_into_file 'config/environments/development.rb',%(
 ), after: 'config.action_mailer.raise_delivery_errors = false'
 
 # config/initializers/
+get_remote "config/initializers/exceptions_app.rb"
 file 'config/initializers/generators.rb', <<~EOF
   Rails.application.config.generators do |g|
     g.helper      false
     g.assets      false
   end
 EOF
-generate :controller, "welcome", "index"
-get_remote "app/views/welcome/index.html.slim"
-
-# For pagy
 get "https://raw.github.com/ddnexus/pagy/master/lib/config/pagy.rb", "config/initializers/pagy.rb"
 
 # config/initializers/locales
@@ -123,17 +126,19 @@ get_remote "config/locales/ja.yml"
 get_remote "config/routes.rb"
 
 # test/
-get_remote "test/fixtures/users.yml"
 get_remote "test/fixtures/tasks.yml"
+get_remote "test/fixtures/users.yml"
 get_remote "test/mailers/task_mailer_test.rb"
 get_remote "test/system/tasks_test.rb"
 get_remote "test/system/users_test.rb"
+get_remote "test/system/welcomes_test.rb"
 get_remote "test/application_system_test_case.rb"
 get_remote "test/login_helper.rb"
 get_remote "test/test_helper.rb"
 
 # For pry
 get_remote ".pryrc"
+get_remote "Procfile"
 
 after_bundle do
   # config/webpack/

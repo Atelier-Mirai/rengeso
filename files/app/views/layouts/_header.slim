@@ -1,10 +1,22 @@
-header.ui.top.fixed.menu
+header.ui.top.menu.mobile.only
+  .ui.container
+    #js-sidebar.item
+      i.icon.large.grey.content
+    .logo_mark
+      = link_to root_path do
+        = image_tag('renge.jpg', alt: 'logo')
+        h1
+          | Taskleaf
+          = semantic_icon('leaf')
+
+
+header.ui.top.fixed.menu.computer.only
   .ui.container
     .logo_mark
       = link_to root_path do
-        = image_tag('renge.jpg', alt: 'logo', height: '64px')
+        = image_tag('renge.jpg', alt: 'logo')
         h1
-          | 蓮華草
+          | Taskleaf
           = semantic_icon('leaf')
 
     .right.menu
@@ -19,11 +31,21 @@ header.ui.top.fixed.menu
           = link_to '採用情報', root_path, class: 'ui item'
 
       = link_to 'お問い合わせ', root_path, class: 'ui item'
+
       .item
-        .ui.icon.input
-          input placeholder="検索" type="text"
-          i.search.link.icon
+        form class="ui form" action="/tasks"
+          .ui.icon.input
+            .ui.icon.input
+              input placeholder="検索" type="text" name="q[name_cont]" id="q_name_cont"
+                i.search.link.icon
+            button.ui.primary.basic.small.button type="submit"
+              | 検索
       .item
-        = link_to 'ログイン', login_path, class: 'ui primary button'
-      .item
-        = link_to '利用者登録', signup_path, class: 'ui positive button'
+        - if current_user
+          = link_to 'タスク一覧', tasks_path, class: 'ui primary tertiary button'
+          - if current_user.admin?
+              = link_to '利用者一覧', admin_users_path, class: 'ui primary tertiary button'
+          = link_to 'ログアウト', logout_path, method: :delete, class: 'ui basic primary button'
+        - else
+          = link_to 'ログイン', login_path, class: 'ui primary button mr-3'
+          = link_to '利用者登録', signup_path, class: 'ui positive button'

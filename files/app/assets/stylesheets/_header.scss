@@ -11,8 +11,10 @@
   body
 -----------------------------------------------------------------------------*/
 body {
-  // ヘッダーの高さ分 空ける
-  margin-top: 100px !important;
+  @media(min-width: 768px) {
+    // ヘッダーの高さ分 空ける
+    margin-top: 100px !important;
+  }
 }
 
 /*-----------------------------------------------------------------------------
@@ -22,22 +24,45 @@ header.ui.menu {
   background-size: 100% auto;
   background: $sakurairo;
 
-  .logo_mark a {
+  // ハンバーガーメニューが左に来るので調整
+  &.mobile.only .ui.container {
     display: grid;
-    grid-template-columns: 72px 240px;
-    grid-template-rows: 72px;
-    img {
+    grid-template-columns: 48px 1fr 46px;
+    grid-template-rows: 48px;
+    #js-sidebar {
       grid-column: 1;
       grid-row: 1;
-      margin: 5px 0 0 0;
     }
-    h1 {
+    .logo_mark {
       grid-column: 2;
       grid-row: 1;
       align-self: center;
+      display: grid;
+    }
+  }
+
+  .logo_mark a {
+    display: grid;
+    justify-self: center;
+    grid-template-rows: 48px;
+    @media(min-width: 768px) {
+      grid-template-rows: 66px;
+    }
+    img {
+      grid-row: 1;
+      align-self: center;
+      margin-right: 7px;
+      height: 36px;
+      @media(min-width: 768px) {
+        height: 48px;
+      }
+    }
+    h1 {
+      grid-row: 1;
+      align-self: center;
       margin: 0;
-      font-size: 48px;
       color: $sanaeiro;
+      font-size: 36px;
     }
   }
 
