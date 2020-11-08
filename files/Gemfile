@@ -40,7 +40,7 @@ group :development, :test do
   gem 'pry-rails'                    # rails consoleでirbの代わりにpryを使う
   gem 'pry-byebug'                   # binding.pry として、デバッグを実施
   gem 'hirb'                         # console上のモデル出力を整形
-  gem 'hirb-unicode'                 # console上のモデル出力を整形
+  gem 'hirb-unicode'                 # hirbでの日本語出力を調整
 end
 
 # 開発用のgem
