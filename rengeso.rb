@@ -73,7 +73,7 @@ get_remote "app/helpers/application_helper.rb"
 get_remote "app/javascript/packs/application.js"
 
 # app/mailers
-get_remote "app/mailers/application_mailer.rb"
+# get_remote "app/mailers/application_mailer.rb"
 
 # app/views/
 get_remote "app/views/application/internal_server_error.html.slim"
@@ -109,6 +109,24 @@ insert_into_file 'config/environments/development.rb',%(
   config.action_mailer.perform_deliveries = true
 ), after: 'config.action_mailer.raise_delivery_errors = false'
 
+# For SENDGRID
+insert_into_file 'config/environments/production.rb',%(
+
+  # Use SendGrid - Add-ons - Heroku
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: 'heroku.com' }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+      user_name: 'apikey',
+      password: ENV['SENDGRID_APIKEY'],
+      domain: 'heroku.com',
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      authentication: :plain,
+      enable_starttls_auto: true
+  }
+), after: '# config.action_mailer.raise_delivery_errors = false'
+
 # config/initializers/
 get_remote "config/initializers/exceptions_app.rb"
 file 'config/initializers/generators.rb', <<~EOF
@@ -124,6 +142,8 @@ get_remote "config/locales/ja.yml"
 
 # config/routes.rb
 get_remote "config/routes.rb"
+get_remote "config/cloudinary.yml"
+get_remote "config/storage.yml"
 
 # test/
 get_remote "test/fixtures/tasks.yml"
